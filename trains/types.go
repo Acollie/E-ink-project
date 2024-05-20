@@ -14,7 +14,7 @@ func New(username string, password string, location string) *Trains {
 		username: username,
 		password: password,
 		Location: location,
-		cache:    cache.New(10, nil),
+		cache:    cache.New(60, nil),
 	}
 }
 
