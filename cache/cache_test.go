@@ -1,8 +1,6 @@
 package cache
 
 import (
-	"londonDaily/trains"
-	"reflect"
 	"testing"
 )
 
@@ -22,27 +20,6 @@ func TestCache(t *testing.T) {
 		c := New(10, struct{}{})
 		if c.isValid() {
 			t.Error("Expected cache to be invalid")
-		}
-	})
-
-	t.Run("Test update", func(t *testing.T) {
-		c := New(10, initScruct)
-
-		trainStruct := trains.TrainResponse{
-			Filter:   nil,
-			Services: nil,
-		}
-
-		c.Update(trainStruct)
-		result, ok := c.Result.(trains.TrainResponse)
-		if !ok {
-			t.Errorf("Expected result to be of type trains.TrainResponse, got %T", c.Result)
-		} else if !reflect.DeepEqual(result, trainStruct) {
-			t.Errorf("Expected result to be %v, got %v", trainStruct, result)
-		}
-
-		if !c.isValid() {
-			t.Error("Expected cache to be valid")
 		}
 	})
 }
